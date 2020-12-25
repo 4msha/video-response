@@ -1,11 +1,13 @@
 import React from 'react';
 import { Router } from '@reach/router';
-import { privateRoutes } from '../routes';
+import { navbarList } from '../routes';
+import {NavbarComponent} from "../../components/navbar";
 export const PrivateRoutes = () => {
   return (
     <>
+        <NavbarComponent  />
         <Router>
-        {privateRoutes.map(Route=>(<Route.Component path={Route.to} />))}
+        {navbarList.map(Route=>(<Route.Component path={Route.to} />))}
         </Router>
     </>
   );

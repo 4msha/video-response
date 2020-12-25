@@ -20,18 +20,21 @@ window.persistor = persistor;
 window.storage = getStorage(window.localStorage);
 window.css = css;
 
-const isAuth = false;
+const isAuth=true;
 
 
-const App = () => (
-  <Provider store={store}>
-    <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
-      <>
-          <NavbarComponent  />
-            {isAuth?<><PublicRoutes /> <PrivateRoutes /></>:<PublicRoutes />}
-      </>
-    </PersistGate>
-  </Provider>
-);
+const App = () => {
+const state=store.getState();
+console.log({state});
+return(
+    <Provider store={store}>
+        <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
+            <>
+                {isAuth?<PrivateRoutes />:<PublicRoutes />}
+            </>
+        </PersistGate>
+    </Provider>
+    )
+};
 
 export default App;

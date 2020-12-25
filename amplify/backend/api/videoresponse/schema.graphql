@@ -1,0 +1,30 @@
+type User @model {
+  id: ID!
+  username: String!
+  email: String!
+  number: String!
+  maxCount:Int!
+  currentCount:Int!
+  videos: [Video] @connection(keyName: "byUser", fields: ["id"])
+}
+
+type Video @model
+@key(name: "byUser", fields: ["userID"],queryField:"videoByUserId"){
+  id: ID!
+  url: String!
+  userID: ID!
+  user: User @connection(fields: ["userID"])
+  audios: [Audio] @connection(keyName: "byVideo", fields: ["id"])
+  videos: [ID]
+  content: String!
+}
+
+
+
+type Audio @model @key(name: "byVideo", fields: ["videoID", "content"]) {
+  id: ID!
+  url: String!
+  videoID: ID!
+  video: Video @connection(fields: ["videoID"])
+  content: String!
+}

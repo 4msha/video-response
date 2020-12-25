@@ -1,10 +1,10 @@
 import React,{useState} from "react";
 import {Link, navigate} from '@reach/router';
-import {privateRoutes} from "../navigation/routes";
+import {navbarList} from "../navigation/routes";
 import {FaEllipsisV} from "react-icons/fa/index";
 
 export const AccountInfo=(routes)=>{
-    const [toggle,setToggle]=useState(false);
+    const [toggle,setToggle]=useState(true);
     const [open,setOpen]=useState(0);
     console.log({routes});
     return(
@@ -28,7 +28,7 @@ export const AccountInfo=(routes)=>{
             </div>
             <div className={`${toggle? 'hidden p-2 m-2 ':'p-2 m-2'}`}>
                 {
-                    privateRoutes.map(Route=>(
+                    navbarList.map(Route=>(
                         <div
                             className={`${open===Route.to?'  text-yellow-200 rounded px-2':'px-2'}`}>
                             <Link

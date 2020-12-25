@@ -5,20 +5,28 @@ import {Link} from "@reach/router";
 import Logo from "../assets/video.svg";
 import {AmplifySignOut} from "@aws-amplify/ui-react";
 import {USER_LOGOUT} from "../common/actions";
-import {auth} from "../common/reducers/auth";
+import {navigate}from "@reach/router";
+import storage from "localforage";
+import {getStore} from "../common/reducers";
+const { store } = getStore(storage);
 
 export const NavbarComponent = () => {
+    const state=store.getState();
+    console.log(state);
    const dispatch=useDispatch();
-   const[isAuth,setisAuth]=useState(false);
+   const[isAuth,setIsAuth]=useState(state.auth.isAuthenticated);
    const signOutAction=()=>{
-       setisAuth(false);
+       console.log("inside sign out");
+       setIsAuth(false);
        dispatch({
            type:USER_LOGOUT,
        });
+       try {
+           navigate("/");
+       } catch (err) {
+           console.log(err);
+       }
    }
-   useEffect(()=>{
-       setisAuth(auth.isAuthenticated);
-   })
     const [toggle,setToggle]=useState(false);
     const { pathname } = window.location;
     const [open, setOpen] = useState(pathname);
@@ -60,9 +68,9 @@ export const NavbarComponent = () => {
                                               </div>
                                           ))
                                       }
-                                      <div>
-                                          <AmplifySignOut onPress={signOutAction } />
-                                      </div>
+                                      <button onClick={signOutAction }>
+                                          <AmplifySignOut  />
+                                      </button>
                                   </div>
                               ) : (
                                   <div className='flex ml-24'>
@@ -83,10 +91,11 @@ export const NavbarComponent = () => {
                                               </div>
                                           ))
                                       }
-                                      <div>
-                                          <AmplifySignOut onPress={signOutAction } />
-                                      </div>
+                                      <button onClick={signOutAction }>
+                                          <AmplifySignOut  />
+                                      </button>
                                   </div>
+
                               )}
                           </div>
                       </div>
@@ -130,23 +139,28 @@ export const NavbarComponent = () => {
                               </div>
                           </div>
                           <div className='mt-3 px-2 '>
-                              <a
-                                  href='https://google.com'
-                                  className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700'>
-                                  Your
-                                  Profile
-                              </a>
-                              <a
-                                  href='https://google.com'
-                                  className='mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700'>
-                                  Settings
-                              </a>
-                              <a
-                                  href='https://google.com'
-                                  className='mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700'>
-                                  Sign
-                                  out
-                              </a>
+                              {
+                                  navbarList.map(Route=>(
+                                      <div
+                                          className={`${open===Route.to?'  text-yellow-200 rounded px-2':'px-2'}`}>
+                                          <Link
+                                              onClick={()=>{
+                                                  setToggle(!toggle);
+                                                  setOpen(Route.to)}}
+                                              to={Route.to}
+                                              className='flex items-center'>
+                                              <div
+                                                  className='mx-12 text-yellow-500 font-semibold md:hidden lg:flex'
+                                              >
+                                                  {Route.title}
+                                              </div>
+                                          </Link>
+                                      </div>
+                                  ))
+                              }
+                              <button onClick={signOutAction }>
+                                  <AmplifySignOut  />
+                              </button>
                           </div>
                       </div>
                   ): (

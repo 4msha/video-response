@@ -9,6 +9,7 @@ const initialState = {
     username:null,
     email: null,
     id: null,
+    number:null,
   },
   isAuthenticated: false,
   access: null,
@@ -19,8 +20,15 @@ export const auth =  (state = initialState, action) => {
 
   switch (action.type) {
     case USER_SIGN_IN:{
-      console.log(action.payload);
-      return (initialState);
+      console.log("inside reducer");
+      const user={
+        username:action.payload.username,
+        email:action.payload.attributes.email,
+        id:action.payload.id,
+        number:action.payload.attributes.phone_number,
+      }
+      console.log({user});
+      return $({ user, isAuthenticated: true,access:"free" });
     }
     case USER_AUTHENTICATED: {
       console.log(action.payload);

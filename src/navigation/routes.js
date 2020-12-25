@@ -37,22 +37,8 @@ export const navbarList=[
     icon: 'home',
     Component: () => <DashBoard />,
   },
-  {
-    to:'/sign-in',
-    title:'SignIn',
-    icon:'signin',
-    Component:()=> <SignInPage/>
-  }
 ];
 
-export const privateRoutes = [
-  {
-    to: '/dashboard',
-    title: 'Dashboard',
-    icon: 'home',
-    Component: () => <DashBoard />,
-  },
-];
 
 export const publicRoutes = [
   {
@@ -66,12 +52,6 @@ export const publicRoutes = [
     title: 'Contact-us',
     icon: 'view-list',
     Component: () => <ContactUs/>,
-  },
-  {
-    to: '/dashboard',
-    title: 'Dashboard',
-    icon: 'home',
-    Component: () => <DashBoard />,
   },
   {
     to: '/what-we-do',

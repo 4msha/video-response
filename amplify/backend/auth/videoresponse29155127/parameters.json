@@ -1,6 +1,6 @@
 {
     "identityPoolName": "videoresponse29155127_identitypool_29155127",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "videor29155127",
     "userPoolName": "videoresponse29155127_userpool_29155127",
     "autoVerifiedAttributes": [
