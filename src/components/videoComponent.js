@@ -1,14 +1,74 @@
 import React ,{useEffect,useRef ,useState}from "react";
 import {useReactMediaRecorder} from "react-media-recorder";
 import {FaPlayCircle,FaPause,FaPlay,FaStopCircle} from "react-icons/fa/index";
-import {handleWholeUploadVideo} from "../helpers/main";
+import {handleWholeUploadVideo,handleAudioResponse,handleVideoResponse} from "../helpers/main";
+import {TextInput} from "./textInput";
+import Visualizer from 'react-audio-visuals'
 
-;
+
+export const AudioPlayer=()=>{
+    const audioRef = useRef(null)
+  return(
+      <div>
+          <audio src={"src"} ref={audioRef} controls />
+          <Visualizer audioRef={audioRef} />
+      </div>
+  )
+}
+
+export const AudioRecorder=({setAudio,videoId,userId})=>{
+    const [paused,setPaused]=useState(false);
+    const [title, setTitle] = useState(null);
+    const [content,setContent]=useState(null);
+    const{
+        status,
+        startRecording,
+        stopRecording,
+        mediaBlobUrl,
+        pauseRecording,
+        resumeRecording,
+        previewStream,
+    }=useReactMediaRecorder({video:false,audio:true,blobPropertyBag:{type:"audio/wav"}});
+
+    const handlePause=()=>{
+        if(paused){
+            resumeRecording();
+        }
+        else{
+            pauseRecording();
+        }
+        setPaused(!paused);
+    }
+    const onUpdate=async()=>{
+        const  file = await fetch(mediaBlobUrl).then(r => r.blob());
+        console.log({file});
+        const res= handleAudioResponse(userId,videoId,title,content,file);
+        setAudio(false);
+    }
+    return(
+        <div className="p-3">
+            <div className="flex justify-center">
+                <button  className="m-2 p-2 border rounded-full border-yellow-700 text-yellow-700 hover:text-yellow-100 hover:bg-yellow-700" onClick={startRecording}><FaPlayCircle className=" w-8 h-8"/></button>
+                {
+                    paused ?(
+                        <button  className="m-2 p-2 border rounded-full  border-yellow-700 text-yellow-700 hover:text-yellow-100 hover:bg-yellow-700" onClick={handlePause}><FaPlay className=" w-8 h-8"/></button>
+                    ):(
+                        <button  className="m-2 p-2 border rounded-full  border-yellow-700 text-yellow-700 hover:text-yellow-100 hover:bg-yellow-700" onClick={handlePause}><FaPause className=" w-8 h-8"/></button>
+                    )
+                }
+                <button  className="m-2 p-2 border rounded-full  border-yellow-700 text-yellow-700 hover:text-yellow-100 hover:bg-yellow-700" onClick={stopRecording}><FaStopCircle className=" w-8 h-8"/></button>
+                <button  className="m-2 p-2 border rounded-full  border-yellow-700 text-yellow-700 hover:text-yellow-100 hover:bg-yellow-700" onClick={onUpdate}>uploadVideo</button>
+            </div>
+            <TextInput {...{placeholder:"title",value:title,setValue:setTitle}}/>
+            <TextInput {...{placeholder:"Content",value:content,setValue:setContent}}/>
+        </div>
+    )
+}
 
 
-export const VideoRecord=({setShoot})=>{
-    const [name, setName] = useState('fuckit')
-    const [response, setResponse] = useState('')
+export const VideoRecord=({setShoot,type,videoId,userId})=>{
+    const [title, setTitle] = useState(null);
+    const [content,setContent]=useState(null);
    const{
        status,
        startRecording,
@@ -17,14 +77,20 @@ export const VideoRecord=({setShoot})=>{
        pauseRecording,
        resumeRecording,
        previewStream,
-   }=useReactMediaRecorder({video:true,blobPropertyBag:{type:"video/mp4"}});
+   }=useReactMediaRecorder({video:true,audio:true,blobPropertyBag:{type:"video/webm"}});
     console.log({mediaBlobUrl,previewStream});
   const [paused,setPaused]=useState(false);
   const onUpdate=async()=>{
       const  file = await fetch(mediaBlobUrl).then(r => r.blob());
       console.log({file});
-      const res=handleWholeUploadVideo(file,setResponse);
+      if(type==="main"){
+          const res=handleWholeUploadVideo(file,content,title);
+      }else{
+          const res=handleVideoResponse(userId,videoId,title,content,file);
+      }
+
       setShoot(false);
+      console.log({file});
   }
 
   const handlePause=()=>{
@@ -58,6 +124,8 @@ export const VideoRecord=({setShoot})=>{
                    <VideoPreview stream={previewStream} className="w-full"/>
                )
            }
+           <TextInput {...{placeholder:"title",value:title,setValue:setTitle}}/>
+           <TextInput {...{placeholder:"Content",value:content,setValue:setContent}}/>
        </div>
    )
 }
@@ -79,7 +147,9 @@ const VideoPreview = ({ stream }) => {
 
 export const VideoInput=({setUpload})=>{
     const [file, setFile] = useState('')
-    const [response, setResponse] = useState('')
+    const [title, setTitle] = useState(null);
+    const [content,setContent]=useState(null);
+
 
     const onChange = (e) => {
         e.preventDefault()
@@ -93,10 +163,8 @@ export const VideoInput=({setUpload})=>{
         e.preventDefault()
         console.log({file});
         if (file) {
-            const key=await handleWholeUploadVideo(file,setResponse)
+            const key=await handleWholeUploadVideo(file,content,title);
             console.log({key});
-        } else {
-            setResponse(`Files needed!`)
         }
         setUpload(false);
     }
@@ -115,6 +183,8 @@ export const VideoInput=({setUpload})=>{
                       onChange={(e) => onChange(e)}
                   />
               </p>
+              <TextInput {...{placeholder:"title",value:title,setValue:setTitle}}/>
+              <TextInput {...{placeholder:"Content",value:content,setValue:setContent}}/>
               <button type='submit' className='btn m-2 ml-0 rounded  p-3 bg-yellow-700 text-white hover:text-yellow-700 hover:bg-yellow-200'>
                   Submit
               </button>

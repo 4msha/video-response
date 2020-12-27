@@ -11,20 +11,34 @@ type User @model {
 type Video @model
 @key(name: "byUser", fields: ["userID"],queryField:"videoByUserId"){
   id: ID!
-  url: String!
+  token: Int!
+  type:String!
   userID: ID!
+  maxCount:Int!
+  currentCount:Int!
   user: User @connection(fields: ["userID"])
   audios: [Audio] @connection(keyName: "byVideo", fields: ["id"])
-  videos: [ID]
+  texts: [Text] @connection(keyName: "byVideo", fields: ["id"])
   content: String!
+  name:String!
 }
 
 
 
 type Audio @model @key(name: "byVideo", fields: ["videoID", "content"]) {
   id: ID!
-  url: String!
+  token: Int!
   videoID: ID!
+  name:String!
   video: Video @connection(fields: ["videoID"])
   content: String!
+}
+
+
+type Text @model @key(name:"byVideo",fields:["videoID","content"]){
+   id:ID!,
+   name:String!,
+   content:String!,
+   videoID: ID!
+   video: Video @connection(fields: ["videoID"])
 }

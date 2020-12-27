@@ -13,7 +13,7 @@ export const getVideoFromS3=async(key)=>{
 }
 
 export const putVideoOnS3=async(name,file,setResponse)=>{
-    console.log({name,file});
+    console.log({name,file},"inside put videp");
     const result=await Storage.put(name,file,{
         level:"public/",
         ACL:"public-read",
@@ -22,7 +22,6 @@ export const putVideoOnS3=async(name,file,setResponse)=>{
     const key=result.key;
     console.log("fuck we did it");
     console.log(result)
-    setResponse(result);
     return (key);
 }
 

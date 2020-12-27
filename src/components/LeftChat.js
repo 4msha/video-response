@@ -1,8 +1,9 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import {FaFacebook, FaInstagram, FaLinkedin,FaCameraRetro,FaCloudUploadAlt,FaFileUpload} from "react-icons/fa/index";
 import {SideCard} from "./sideCard";
 import {VideoInput, VideoRecord} from "./videoComponent";
 import {AccountInfo} from "./accountInfo";
+import {fetchAllVideo} from "../helpers/apiCall";
 
 const routes=[
     "Acoount info",
@@ -14,12 +15,12 @@ export const LeftInfo=({setSelected,selected})=>{
     const [add,setAdd]=useState(false);
     const [upload,setUpload]=useState(false);
     const [shoot,setShoot]=useState(false);
+    const [data,setData]=useState([]);
     const handleShoot=()=>{
             console.log("shoot");
             setAdd(!add);
             setShoot(!shoot);
     }
-    const data=[];
     const handleUpload=()=>{
         console.log("upload");
         setAdd(!add);
@@ -28,6 +29,22 @@ export const LeftInfo=({setSelected,selected})=>{
     const handleNewUpload=()=>{
         setAdd(!add);
     }
+
+    const handleClick=()=>{
+        console.log("insde handke cli");
+      //  setSelected(video);
+        console.log({selected});
+    }
+
+    useEffect(()=>{
+        async function fun(){
+            const res=await fetchAllVideo();
+            setData(res);
+            return (res);
+        }
+        fun().then((res)=>console.log(res)).catch((err)=>console.error(err));
+    },[])
+
     return(
         <>
             <div className={`${add?'fixed z-10 inset-0 overflow-y-auto':'hidden'}`}>
@@ -106,26 +123,17 @@ export const LeftInfo=({setSelected,selected})=>{
                 </div>
             ):<div className="hidden"> </div>}
             <AccountInfo/>
-            <div className="flex border-b border-yellow-700 py-2">
-                <div className=" m-2 mb-1 border-l-4 border-yellow-700 py-1">
-                    <p className="px-2 font-bold text-gray-700 text-xl">Follow Us</p>
-                </div>
-                <div className="p-3  mx-2 border rounded-full border-yellow-700 text-yellow-700 ">
-                    <FaFacebook/>
-                </div>
-                <div className="p-3 mx-2 border rounded-full border-yellow-700 text-yellow-700 ">
-                    <FaInstagram/>
-                </div>
-                <div className="p-3  mx-2  border rounded-full border-yellow-700 text-yellow-700 ">
-                    <FaInstagram/>
-                </div>
-                <div className="p-3 mx-2 border rounded-full border-yellow-700 text-yellow-700 ">
-                    <FaLinkedin/>
-                </div>
-                <div className="p-3 mx-2 border rounded-full border-yellow-700 text-yellow-700 ">
-                    <FaLinkedin/>
-                </div>
-            </div>
+            {/*<div className="flex border-b border-yellow-700 py-2">*/}
+            {/*    <div className="p-3  mx-2 border rounded-full border-yellow-700 text-yellow-700 ">*/}
+            {/*        <FaFacebook/>*/}
+            {/*    </div>*/}
+            {/*    <div className="p-3 mx-2 border rounded-full border-yellow-700 text-yellow-700 ">*/}
+            {/*        <FaInstagram/>*/}
+            {/*    </div>*/}
+            {/*    <div className="p-3 mx-2 border rounded-full border-yellow-700 text-yellow-700 ">*/}
+            {/*        <FaLinkedin/>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
             <div className=" m-2 mb-1 border-l-4 border-yellow-700 py-1">
                 <p className=" px-2 font-bold text-gray-700 text-xl">Videos</p>
             </div>
@@ -134,11 +142,13 @@ export const LeftInfo=({setSelected,selected})=>{
                     <FaFileUpload className="p-2 w-8 h-8 "/> <p className="text-lg text-black">{"   "} new video</p>
                 </div>
             </button>
-            <div className=" m-2 mb-1 border-l-4 border-yellow-700 py-1">
-                {data.map((product,index)=>{
+            <div className=" m-2 mb-1 py-1 ">
+                {data.map((video,index)=>{
                     return(
-                        <div key={index} onClick={setSelected(product)}>
-                            <SideCard {...{product}}/>
+                        <div  key={index}>
+                            <button onClick={handleClick}>
+                                <SideCard {...{video}}/>
+                            </button>
                         </div>
                     )
                 })}

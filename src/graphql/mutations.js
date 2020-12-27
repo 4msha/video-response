@@ -16,10 +16,13 @@ export const createUser = /* GraphQL */ `
       videos {
         items {
           id
-          url
+          token
+          type
           userID
-          videos
+          maxCount
+          currentCount
           content
+          name
           createdAt
           updatedAt
         }
@@ -45,10 +48,13 @@ export const updateUser = /* GraphQL */ `
       videos {
         items {
           id
-          url
+          token
+          type
           userID
-          videos
+          maxCount
+          currentCount
           content
+          name
           createdAt
           updatedAt
         }
@@ -74,10 +80,13 @@ export const deleteUser = /* GraphQL */ `
       videos {
         items {
           id
-          url
+          token
+          type
           userID
-          videos
+          maxCount
+          currentCount
           content
+          name
           createdAt
           updatedAt
         }
@@ -95,8 +104,11 @@ export const createVideo = /* GraphQL */ `
   ) {
     createVideo(input: $input, condition: $condition) {
       id
-      url
+      token
+      type
       userID
+      maxCount
+      currentCount
       user {
         id
         username
@@ -113,16 +125,28 @@ export const createVideo = /* GraphQL */ `
       audios {
         items {
           id
-          url
+          token
           videoID
+          name
           content
           createdAt
           updatedAt
         }
         nextToken
       }
-      videos
+      texts {
+        items {
+          id
+          name
+          content
+          videoID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       content
+      name
       createdAt
       updatedAt
     }
@@ -135,8 +159,11 @@ export const updateVideo = /* GraphQL */ `
   ) {
     updateVideo(input: $input, condition: $condition) {
       id
-      url
+      token
+      type
       userID
+      maxCount
+      currentCount
       user {
         id
         username
@@ -153,16 +180,28 @@ export const updateVideo = /* GraphQL */ `
       audios {
         items {
           id
-          url
+          token
           videoID
+          name
           content
           createdAt
           updatedAt
         }
         nextToken
       }
-      videos
+      texts {
+        items {
+          id
+          name
+          content
+          videoID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       content
+      name
       createdAt
       updatedAt
     }
@@ -175,8 +214,11 @@ export const deleteVideo = /* GraphQL */ `
   ) {
     deleteVideo(input: $input, condition: $condition) {
       id
-      url
+      token
+      type
       userID
+      maxCount
+      currentCount
       user {
         id
         username
@@ -193,16 +235,28 @@ export const deleteVideo = /* GraphQL */ `
       audios {
         items {
           id
-          url
+          token
           videoID
+          name
           content
           createdAt
           updatedAt
         }
         nextToken
       }
-      videos
+      texts {
+        items {
+          id
+          name
+          content
+          videoID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       content
+      name
       createdAt
       updatedAt
     }
@@ -215,12 +269,16 @@ export const createAudio = /* GraphQL */ `
   ) {
     createAudio(input: $input, condition: $condition) {
       id
-      url
+      token
       videoID
+      name
       video {
         id
-        url
+        token
+        type
         userID
+        maxCount
+        currentCount
         user {
           id
           username
@@ -234,8 +292,11 @@ export const createAudio = /* GraphQL */ `
         audios {
           nextToken
         }
-        videos
+        texts {
+          nextToken
+        }
         content
+        name
         createdAt
         updatedAt
       }
@@ -252,12 +313,16 @@ export const updateAudio = /* GraphQL */ `
   ) {
     updateAudio(input: $input, condition: $condition) {
       id
-      url
+      token
       videoID
+      name
       video {
         id
-        url
+        token
+        type
         userID
+        maxCount
+        currentCount
         user {
           id
           username
@@ -271,8 +336,11 @@ export const updateAudio = /* GraphQL */ `
         audios {
           nextToken
         }
-        videos
+        texts {
+          nextToken
+        }
         content
+        name
         createdAt
         updatedAt
       }
@@ -289,12 +357,16 @@ export const deleteAudio = /* GraphQL */ `
   ) {
     deleteAudio(input: $input, condition: $condition) {
       id
-      url
+      token
       videoID
+      name
       video {
         id
-        url
+        token
+        type
         userID
+        maxCount
+        currentCount
         user {
           id
           username
@@ -308,12 +380,144 @@ export const deleteAudio = /* GraphQL */ `
         audios {
           nextToken
         }
-        videos
+        texts {
+          nextToken
+        }
         content
+        name
         createdAt
         updatedAt
       }
       content
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createText = /* GraphQL */ `
+  mutation CreateText(
+    $input: CreateTextInput!
+    $condition: ModelTextConditionInput
+  ) {
+    createText(input: $input, condition: $condition) {
+      id
+      name
+      content
+      videoID
+      video {
+        id
+        token
+        type
+        userID
+        maxCount
+        currentCount
+        user {
+          id
+          username
+          email
+          number
+          maxCount
+          currentCount
+          createdAt
+          updatedAt
+        }
+        audios {
+          nextToken
+        }
+        texts {
+          nextToken
+        }
+        content
+        name
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateText = /* GraphQL */ `
+  mutation UpdateText(
+    $input: UpdateTextInput!
+    $condition: ModelTextConditionInput
+  ) {
+    updateText(input: $input, condition: $condition) {
+      id
+      name
+      content
+      videoID
+      video {
+        id
+        token
+        type
+        userID
+        maxCount
+        currentCount
+        user {
+          id
+          username
+          email
+          number
+          maxCount
+          currentCount
+          createdAt
+          updatedAt
+        }
+        audios {
+          nextToken
+        }
+        texts {
+          nextToken
+        }
+        content
+        name
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteText = /* GraphQL */ `
+  mutation DeleteText(
+    $input: DeleteTextInput!
+    $condition: ModelTextConditionInput
+  ) {
+    deleteText(input: $input, condition: $condition) {
+      id
+      name
+      content
+      videoID
+      video {
+        id
+        token
+        type
+        userID
+        maxCount
+        currentCount
+        user {
+          id
+          username
+          email
+          number
+          maxCount
+          currentCount
+          createdAt
+          updatedAt
+        }
+        audios {
+          nextToken
+        }
+        texts {
+          nextToken
+        }
+        content
+        name
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

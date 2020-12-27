@@ -13,10 +13,13 @@ export const onCreateUser = /* GraphQL */ `
       videos {
         items {
           id
-          url
+          token
+          type
           userID
-          videos
+          maxCount
+          currentCount
           content
+          name
           createdAt
           updatedAt
         }
@@ -39,10 +42,13 @@ export const onUpdateUser = /* GraphQL */ `
       videos {
         items {
           id
-          url
+          token
+          type
           userID
-          videos
+          maxCount
+          currentCount
           content
+          name
           createdAt
           updatedAt
         }
@@ -65,10 +71,13 @@ export const onDeleteUser = /* GraphQL */ `
       videos {
         items {
           id
-          url
+          token
+          type
           userID
-          videos
+          maxCount
+          currentCount
           content
+          name
           createdAt
           updatedAt
         }
@@ -83,8 +92,11 @@ export const onCreateVideo = /* GraphQL */ `
   subscription OnCreateVideo {
     onCreateVideo {
       id
-      url
+      token
+      type
       userID
+      maxCount
+      currentCount
       user {
         id
         username
@@ -101,16 +113,28 @@ export const onCreateVideo = /* GraphQL */ `
       audios {
         items {
           id
-          url
+          token
           videoID
+          name
           content
           createdAt
           updatedAt
         }
         nextToken
       }
-      videos
+      texts {
+        items {
+          id
+          name
+          content
+          videoID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       content
+      name
       createdAt
       updatedAt
     }
@@ -120,8 +144,11 @@ export const onUpdateVideo = /* GraphQL */ `
   subscription OnUpdateVideo {
     onUpdateVideo {
       id
-      url
+      token
+      type
       userID
+      maxCount
+      currentCount
       user {
         id
         username
@@ -138,16 +165,28 @@ export const onUpdateVideo = /* GraphQL */ `
       audios {
         items {
           id
-          url
+          token
           videoID
+          name
           content
           createdAt
           updatedAt
         }
         nextToken
       }
-      videos
+      texts {
+        items {
+          id
+          name
+          content
+          videoID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       content
+      name
       createdAt
       updatedAt
     }
@@ -157,8 +196,11 @@ export const onDeleteVideo = /* GraphQL */ `
   subscription OnDeleteVideo {
     onDeleteVideo {
       id
-      url
+      token
+      type
       userID
+      maxCount
+      currentCount
       user {
         id
         username
@@ -175,16 +217,28 @@ export const onDeleteVideo = /* GraphQL */ `
       audios {
         items {
           id
-          url
+          token
           videoID
+          name
           content
           createdAt
           updatedAt
         }
         nextToken
       }
-      videos
+      texts {
+        items {
+          id
+          name
+          content
+          videoID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       content
+      name
       createdAt
       updatedAt
     }
@@ -194,12 +248,16 @@ export const onCreateAudio = /* GraphQL */ `
   subscription OnCreateAudio {
     onCreateAudio {
       id
-      url
+      token
       videoID
+      name
       video {
         id
-        url
+        token
+        type
         userID
+        maxCount
+        currentCount
         user {
           id
           username
@@ -213,8 +271,11 @@ export const onCreateAudio = /* GraphQL */ `
         audios {
           nextToken
         }
-        videos
+        texts {
+          nextToken
+        }
         content
+        name
         createdAt
         updatedAt
       }
@@ -228,12 +289,16 @@ export const onUpdateAudio = /* GraphQL */ `
   subscription OnUpdateAudio {
     onUpdateAudio {
       id
-      url
+      token
       videoID
+      name
       video {
         id
-        url
+        token
+        type
         userID
+        maxCount
+        currentCount
         user {
           id
           username
@@ -247,8 +312,11 @@ export const onUpdateAudio = /* GraphQL */ `
         audios {
           nextToken
         }
-        videos
+        texts {
+          nextToken
+        }
         content
+        name
         createdAt
         updatedAt
       }
@@ -262,12 +330,16 @@ export const onDeleteAudio = /* GraphQL */ `
   subscription OnDeleteAudio {
     onDeleteAudio {
       id
-      url
+      token
       videoID
+      name
       video {
         id
-        url
+        token
+        type
         userID
+        maxCount
+        currentCount
         user {
           id
           username
@@ -281,12 +353,135 @@ export const onDeleteAudio = /* GraphQL */ `
         audios {
           nextToken
         }
-        videos
+        texts {
+          nextToken
+        }
         content
+        name
         createdAt
         updatedAt
       }
       content
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateText = /* GraphQL */ `
+  subscription OnCreateText {
+    onCreateText {
+      id
+      name
+      content
+      videoID
+      video {
+        id
+        token
+        type
+        userID
+        maxCount
+        currentCount
+        user {
+          id
+          username
+          email
+          number
+          maxCount
+          currentCount
+          createdAt
+          updatedAt
+        }
+        audios {
+          nextToken
+        }
+        texts {
+          nextToken
+        }
+        content
+        name
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateText = /* GraphQL */ `
+  subscription OnUpdateText {
+    onUpdateText {
+      id
+      name
+      content
+      videoID
+      video {
+        id
+        token
+        type
+        userID
+        maxCount
+        currentCount
+        user {
+          id
+          username
+          email
+          number
+          maxCount
+          currentCount
+          createdAt
+          updatedAt
+        }
+        audios {
+          nextToken
+        }
+        texts {
+          nextToken
+        }
+        content
+        name
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteText = /* GraphQL */ `
+  subscription OnDeleteText {
+    onDeleteText {
+      id
+      name
+      content
+      videoID
+      video {
+        id
+        token
+        type
+        userID
+        maxCount
+        currentCount
+        user {
+          id
+          username
+          email
+          number
+          maxCount
+          currentCount
+          createdAt
+          updatedAt
+        }
+        audios {
+          nextToken
+        }
+        texts {
+          nextToken
+        }
+        content
+        name
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

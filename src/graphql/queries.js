@@ -13,10 +13,13 @@ export const getUser = /* GraphQL */ `
       videos {
         items {
           id
-          url
+          token
+          type
           userID
-          videos
+          maxCount
+          currentCount
           content
+          name
           createdAt
           updatedAt
         }
@@ -55,8 +58,11 @@ export const getVideo = /* GraphQL */ `
   query GetVideo($id: ID!) {
     getVideo(id: $id) {
       id
-      url
+      token
+      type
       userID
+      maxCount
+      currentCount
       user {
         id
         username
@@ -73,16 +79,28 @@ export const getVideo = /* GraphQL */ `
       audios {
         items {
           id
-          url
+          token
           videoID
+          name
           content
           createdAt
           updatedAt
         }
         nextToken
       }
-      videos
+      texts {
+        items {
+          id
+          name
+          content
+          videoID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       content
+      name
       createdAt
       updatedAt
     }
@@ -97,8 +115,11 @@ export const listVideos = /* GraphQL */ `
     listVideos(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        url
+        token
+        type
         userID
+        maxCount
+        currentCount
         user {
           id
           username
@@ -112,8 +133,11 @@ export const listVideos = /* GraphQL */ `
         audios {
           nextToken
         }
-        videos
+        texts {
+          nextToken
+        }
         content
+        name
         createdAt
         updatedAt
       }
@@ -125,12 +149,16 @@ export const getAudio = /* GraphQL */ `
   query GetAudio($id: ID!) {
     getAudio(id: $id) {
       id
-      url
+      token
       videoID
+      name
       video {
         id
-        url
+        token
+        type
         userID
+        maxCount
+        currentCount
         user {
           id
           username
@@ -144,8 +172,11 @@ export const getAudio = /* GraphQL */ `
         audios {
           nextToken
         }
-        videos
+        texts {
+          nextToken
+        }
         content
+        name
         createdAt
         updatedAt
       }
@@ -164,18 +195,93 @@ export const listAudios = /* GraphQL */ `
     listAudios(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        url
+        token
         videoID
+        name
         video {
           id
-          url
+          token
+          type
           userID
-          videos
+          maxCount
+          currentCount
           content
+          name
           createdAt
           updatedAt
         }
         content
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getText = /* GraphQL */ `
+  query GetText($id: ID!) {
+    getText(id: $id) {
+      id
+      name
+      content
+      videoID
+      video {
+        id
+        token
+        type
+        userID
+        maxCount
+        currentCount
+        user {
+          id
+          username
+          email
+          number
+          maxCount
+          currentCount
+          createdAt
+          updatedAt
+        }
+        audios {
+          nextToken
+        }
+        texts {
+          nextToken
+        }
+        content
+        name
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listTexts = /* GraphQL */ `
+  query ListTexts(
+    $filter: ModelTextFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTexts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        content
+        videoID
+        video {
+          id
+          token
+          type
+          userID
+          maxCount
+          currentCount
+          content
+          name
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }
@@ -200,8 +306,11 @@ export const videoByUserId = /* GraphQL */ `
     ) {
       items {
         id
-        url
+        token
+        type
         userID
+        maxCount
+        currentCount
         user {
           id
           username
@@ -215,8 +324,11 @@ export const videoByUserId = /* GraphQL */ `
         audios {
           nextToken
         }
-        videos
+        texts {
+          nextToken
+        }
         content
+        name
         createdAt
         updatedAt
       }

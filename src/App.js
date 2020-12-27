@@ -13,6 +13,8 @@ import { css } from './styles';
 import { PrivateRoutes } from './navigation/private';
 import { PublicRoutes } from './navigation/public';
 import {NavbarComponent} from "./components/navbar";
+import { Router } from '@reach/router';
+import {ResponsePage} from "./screens/responsePage";
 
 const { store, persistor } = getStore(storage);
 
@@ -31,6 +33,9 @@ return(
         <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
             <>
                 {isAuth?<PrivateRoutes />:<PublicRoutes />}
+                <Router>
+                    <ResponsePage path="/:userId/:videoId" />
+                </Router>
             </>
         </PersistGate>
     </Provider>
