@@ -20,7 +20,7 @@ export const AccountInfo=(routes)=>{
                     <div className='text-base font-medium leading-none text-white'>Firdausia</div>
                     <div className='mt-1 text-sm font-medium leading-none text-gray-400'>emaple.com</div>
                 </div>
-                <div className="ml-auto text-yellow-700">
+                <div className="ml-auto text-purple-700">
                     <button onClick={()=>setToggle(!toggle)}>
                         <FaEllipsisV className="w-8 h-8"/>
                     </button>
@@ -30,7 +30,7 @@ export const AccountInfo=(routes)=>{
                 {
                     navbarList.map(Route=>(
                         <div
-                            className={`${open===Route.to?'  text-yellow-200 rounded px-2':'px-2'}`}>
+                            className={`${open===Route.to?'  text-purple-200 rounded px-2':'px-2'}`}>
                             <Link
                                 onClick={()=>{
                                     setToggle(!toggle);
@@ -38,7 +38,7 @@ export const AccountInfo=(routes)=>{
                                 to={Route.to}
                                 className='flex items-center'>
                                 <div
-                                    className='mx-12 text-yellow-500 font-semibold md:hidden lg:flex'
+                                    className='mx-12 text-purple-500 font-semibold lg:hidden lg:flex'
                                 >
                                     {Route.title}
                                 </div>
@@ -51,7 +51,7 @@ export const AccountInfo=(routes)=>{
                     <button
                         className='flex items-center'>
                         <div
-                            className='mx-12 text-yellow-500 font-semibold md:hidden lg:flex'
+                            className='mx-12 text-purple-500 font-semibold md:hidden lg:flex'
                         >
                             Logout
                         </div>

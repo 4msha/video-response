@@ -5,7 +5,7 @@ import {NavbarComponent} from "../../components/navbar";
 export const PrivateRoutes = () => {
   return (
     <>
-
+        {/*<NavbarComponent/>*/}
         <Router>
         {navbarList.map(Route=>(<Route.Component path={Route.to} />))}
         </Router>

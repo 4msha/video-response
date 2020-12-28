@@ -32,7 +32,7 @@ export const NavbarComponent = () => {
     const [open, setOpen] = useState(pathname);
   return (
       <div>
-          <nav className='bg-orange-200   h-32'>
+          <nav className='  h-32'>
               <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 '>
                   <div className='flex items-center  pt-12  justify-between h-16'>
                       <div className='flex items-center'>
@@ -40,7 +40,7 @@ export const NavbarComponent = () => {
                               <img src={Logo} className='w-20 h-20 m-2 color-white' alt='logo'  />
                               <div className='flex flex-col align-start md:hidden lg:flex'>
                                   <p
-                                      className='flex-none text-orange-700 text-xl font-bold '
+                                      className='flex-none text-purple-700 text-xl font-bold '
                                   >
                                       video
                                       <text className='text-black    text-md font-normal '>Response</text>
@@ -54,13 +54,13 @@ export const NavbarComponent = () => {
                                       {
                                           navbarList.map(Route=>(
                                               <div
-                                                  className={`${open===Route.to?' border-orange-700 px-2 m-2':'px-2 m-2'}`}>
+                                                  className={`${open===Route.to?' border-purple-700 m-1':'m-1'}`}>
                                                   <Link
                                                       onClick={()=>{setOpen(Route.to)}}
                                                       to={Route.to}
                                                       className='flex items-center'>
                                                       <div
-                                                          className='mx-12 text-orange-700 font-semibold md:hidden lg:flex'
+                                                          className='mx-12 text-purple-700 font-semibold md:hidden lg:flex'
                                                       >
                                                           {Route.title}
                                                       </div>
@@ -83,7 +83,7 @@ export const NavbarComponent = () => {
                                                       to={Route.to}
                                                       className='flex items-center'>
                                                       <div
-                                                          className='mx-12 text-orange-700 font-semibold md:hidden lg:flex'
+                                                          className='mx-12 text-purple-700 font-semibold md:hidden lg:flex'
                                                       >
                                                           {Route.title}
                                                       </div>
@@ -91,9 +91,6 @@ export const NavbarComponent = () => {
                                               </div>
                                           ))
                                       }
-                                      <button onClick={signOutAction }>
-                                          <AmplifySignOut  />
-                                      </button>
                                   </div>
 
                               )}

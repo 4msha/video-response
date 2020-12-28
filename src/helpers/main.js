@@ -26,7 +26,8 @@ export const handleWholeUploadVideo=async(file,content,title)=>{
             maxCount:20,
             currentCount:1,
             name:title,
-            type:"main"
+            type:"main",
+            parentToken: 0
         }
         const data=await addVideoToDb(input);
         console.log({res,data});
@@ -59,6 +60,7 @@ export const handleVideoResponse =async(userId,videoId,title,content,file)=> {
             currentCount: 1,
             name: title,
             type: "response",
+            parentToken:token,
         }
         const data = await addVideoToDb(input);
         console.log({res, data});

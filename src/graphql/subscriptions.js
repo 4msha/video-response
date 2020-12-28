@@ -14,6 +14,7 @@ export const onCreateUser = /* GraphQL */ `
         items {
           id
           token
+          parentToken
           type
           userID
           maxCount
@@ -43,6 +44,7 @@ export const onUpdateUser = /* GraphQL */ `
         items {
           id
           token
+          parentToken
           type
           userID
           maxCount
@@ -72,6 +74,7 @@ export const onDeleteUser = /* GraphQL */ `
         items {
           id
           token
+          parentToken
           type
           userID
           maxCount
@@ -93,6 +96,7 @@ export const onCreateVideo = /* GraphQL */ `
     onCreateVideo {
       id
       token
+      parentToken
       type
       userID
       maxCount
@@ -145,6 +149,7 @@ export const onUpdateVideo = /* GraphQL */ `
     onUpdateVideo {
       id
       token
+      parentToken
       type
       userID
       maxCount
@@ -197,6 +202,7 @@ export const onDeleteVideo = /* GraphQL */ `
     onDeleteVideo {
       id
       token
+      parentToken
       type
       userID
       maxCount
@@ -254,6 +260,7 @@ export const onCreateAudio = /* GraphQL */ `
       video {
         id
         token
+        parentToken
         type
         userID
         maxCount
@@ -295,6 +302,7 @@ export const onUpdateAudio = /* GraphQL */ `
       video {
         id
         token
+        parentToken
         type
         userID
         maxCount
@@ -336,6 +344,7 @@ export const onDeleteAudio = /* GraphQL */ `
       video {
         id
         token
+        parentToken
         type
         userID
         maxCount
@@ -377,6 +386,7 @@ export const onCreateText = /* GraphQL */ `
       video {
         id
         token
+        parentToken
         type
         userID
         maxCount
@@ -417,6 +427,7 @@ export const onUpdateText = /* GraphQL */ `
       video {
         id
         token
+        parentToken
         type
         userID
         maxCount
@@ -457,6 +468,7 @@ export const onDeleteText = /* GraphQL */ `
       video {
         id
         token
+        parentToken
         type
         userID
         maxCount

@@ -57,9 +57,19 @@ export const updateCurrentCount=async(currentCount,id)=>{
 }
 
 export const fetchAllVideo=async()=>{
-    const res=await API.graphql({ query: queries.listVideos, variables: { limit: 20 }});
+    const id=store.getState().auth.user.id;
+    console.log({id});
+    const res=await API.graphql({ query: queries.getUser, variables: { id:id }});
     console.log({res});
-    return (res.data.listVideos.items);
+    const response=res.data.getUser.videos.items;
+    let data=[];
+    response.map((re)=>{
+        if(re.type==="main"){
+            data.push(re);
+        }
+    });
+    console.log({data});
+    return (data);
 }
 
 export const getVideoResponseNo=async(videoId)=>{
@@ -101,4 +111,41 @@ export const uploadTextToDb=async(input)=>{
     const res=await API.graphql({ query: mutations.createText, variables: {input: input}});
     console.log({res});
     return (res);
+}
+
+export const getAllResponse=async()=>{
+    const userId=store.getState().auth.user.id;
+    const res=await API.graphql({ query: queries.getUser, variables: { id: userId }});
+    const items=res.data.getUser.videos.items;
+    let response=[];
+    let videos=[];
+    let audios=[];
+    let texts=[];
+    items.map((item)=>{
+        if(item.type==="response"){
+            response.push(item);
+        }else{
+            videos.push(item);
+        }
+    });
+    console.log({response,videos});
+    videos.map(async(video)=>{
+        const data=await  API.graphql({ query: queries.getVideo, variables: { id: video.id }});
+        const temp1=data.data.getVideo.audios.items;
+        const temp2=data.data.getVideo.texts.items;
+        console.log({temp1,temp2});
+        temp2.map((t)=>{
+            texts.push(t);
+        })
+        temp1.map((t)=>{
+            audios.push(t);
+        })
+    });
+    console.log({response,audios,texts});
+    const result={
+        videos:response,
+        audios:audios,
+        texts:texts
+    }
+    return (result);
 }

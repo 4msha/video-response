@@ -14,6 +14,7 @@ export const getUser = /* GraphQL */ `
         items {
           id
           token
+          parentToken
           type
           userID
           maxCount
@@ -59,6 +60,7 @@ export const getVideo = /* GraphQL */ `
     getVideo(id: $id) {
       id
       token
+      parentToken
       type
       userID
       maxCount
@@ -116,6 +118,7 @@ export const listVideos = /* GraphQL */ `
       items {
         id
         token
+        parentToken
         type
         userID
         maxCount
@@ -155,6 +158,7 @@ export const getAudio = /* GraphQL */ `
       video {
         id
         token
+        parentToken
         type
         userID
         maxCount
@@ -201,6 +205,7 @@ export const listAudios = /* GraphQL */ `
         video {
           id
           token
+          parentToken
           type
           userID
           maxCount
@@ -228,6 +233,7 @@ export const getText = /* GraphQL */ `
       video {
         id
         token
+        parentToken
         type
         userID
         maxCount
@@ -273,6 +279,7 @@ export const listTexts = /* GraphQL */ `
         video {
           id
           token
+          parentToken
           type
           userID
           maxCount
@@ -307,6 +314,7 @@ export const videoByUserId = /* GraphQL */ `
       items {
         id
         token
+        parentToken
         type
         userID
         maxCount

@@ -33,7 +33,7 @@ const SignIn=()=> {
         // API.graphql({query:createUser,variables:{id:result.id,username:result.username}});
     return(
         <>
-            <h1>u have successfully signed in </h1>
+            <h1 className="mx-auto text-2xl text-purple=700">You have successfully Signed In </h1>
         </>
     );
   }

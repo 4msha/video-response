@@ -17,6 +17,7 @@ export const createUser = /* GraphQL */ `
         items {
           id
           token
+          parentToken
           type
           userID
           maxCount
@@ -49,6 +50,7 @@ export const updateUser = /* GraphQL */ `
         items {
           id
           token
+          parentToken
           type
           userID
           maxCount
@@ -81,6 +83,7 @@ export const deleteUser = /* GraphQL */ `
         items {
           id
           token
+          parentToken
           type
           userID
           maxCount
@@ -105,6 +108,7 @@ export const createVideo = /* GraphQL */ `
     createVideo(input: $input, condition: $condition) {
       id
       token
+      parentToken
       type
       userID
       maxCount
@@ -160,6 +164,7 @@ export const updateVideo = /* GraphQL */ `
     updateVideo(input: $input, condition: $condition) {
       id
       token
+      parentToken
       type
       userID
       maxCount
@@ -215,6 +220,7 @@ export const deleteVideo = /* GraphQL */ `
     deleteVideo(input: $input, condition: $condition) {
       id
       token
+      parentToken
       type
       userID
       maxCount
@@ -275,6 +281,7 @@ export const createAudio = /* GraphQL */ `
       video {
         id
         token
+        parentToken
         type
         userID
         maxCount
@@ -319,6 +326,7 @@ export const updateAudio = /* GraphQL */ `
       video {
         id
         token
+        parentToken
         type
         userID
         maxCount
@@ -363,6 +371,7 @@ export const deleteAudio = /* GraphQL */ `
       video {
         id
         token
+        parentToken
         type
         userID
         maxCount
@@ -407,6 +416,7 @@ export const createText = /* GraphQL */ `
       video {
         id
         token
+        parentToken
         type
         userID
         maxCount
@@ -450,6 +460,7 @@ export const updateText = /* GraphQL */ `
       video {
         id
         token
+        parentToken
         type
         userID
         maxCount
@@ -493,6 +504,7 @@ export const deleteText = /* GraphQL */ `
       video {
         id
         token
+        parentToken
         type
         userID
         maxCount

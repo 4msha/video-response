@@ -5,7 +5,6 @@
 }
 
 body {
-    background: #FEEBC8;
     overflow: hidden;
 }
 
@@ -71,7 +70,7 @@ p {
 }
 
 .head {
-    background-color: ghostwhite;
+    background-color: #6D28D9;
     border-radius: 90px 90px 25px 25px;
     -moz-border-radius: 90px 90px 25px 25px;
     -webkit-border-radius: 90px 90px 25px 25px;
@@ -96,7 +95,7 @@ p {
     top: 3px;
 }
 .head .stripe.two {
-    background: #cd7640;
+    background: white;
     height: 4px;
     top: 14px;
 }
@@ -120,34 +119,34 @@ p {
     height: 7px;
 }
 .head .detail.zero {
-    background-color: #cd7640;
+    background-color: white;
     width: 2%;
     margin-left: 3px;
 }
 .head .detail.one {
-    background-color: #cd7640;
+    background-color: white;
     width: 8%;
     margin-left: 3px;
 }
 .head .detail.two {
-    background-color: #cd7640;
+    background-color: white;
     width: 6%;
     margin-left: 5px;
 }
 .head .detail.three {
-    background-color: #cd7640;
+    background-color: white;
     width: 4%;
     margin-left: 45px;
     height: 5px;
     margin-top: 2px;
 }
 .head .detail.four {
-    background-color: #cd7640;
+    background-color: white;
     width: 10%;
     margin-left: 4px;
 }
 .head .detail.five {
-    background-color: #cd7640;
+    background-color: white;
     width: 2%;
     margin-left: 3px;
 }
@@ -207,7 +206,7 @@ p {
 }
 
 .ball {
-    background-color: ghostwhite;
+    background-color: #6D28D9;
     border-radius: 50%;
     height: 220px;
     overflow: hidden;
@@ -229,7 +228,7 @@ p {
 }
 
 .ring {
-    background: #cd7640;
+    background: white;
     border-radius: 50%;
     height: 70px;
     margin-left: -35px;
@@ -237,7 +236,7 @@ p {
     width: 70px;
 }
 .ring:after {
-    background-color: ghostwhite;
+    background-color: #6D28D9;
     border-radius: 50%;
     content: "";
     display: block;

@@ -1,6 +1,8 @@
 import React ,{Component} from "react";
 import "./home.css";
 
+import {NavbarComponent} from "../../components/navbar";
+
 // I've seen a few of these BB-8 animations about, so I thought I'd take a shot at building one using React as a bit of an exercise. My favorite thing to do is draw circles around him to make him do a little jig, but I'm easily amused.
 
 
@@ -94,8 +96,9 @@ export default class Home extends Component {
         let {speed, accelMod, droidX, mouseX, toTheRight} = this.state;
 
         return (
-            <div className="bg-orange-200 min-h-screen">
-
+            <>
+            <div className=" min-h-screen">
+                {/*<NavbarComponent/>*/}
                 {/*<div className="logo">*/}
                 {/*    <img src="http://i68.tinypic.com/iod6yh.png" />*/}
                 {/*</div>*/}
@@ -124,12 +127,12 @@ export default class Home extends Component {
                 {/*</div>*/}
                 <div className="pt-10 mx-auto max-h-screen-xl max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:pt-16 lg:pt-20 lg:px-8 xl:pt-28">
                     <div className="sm:text-center lg:text-left">
-                        <p className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
+                        <p className="text-4xl tracking-tight leading-10 font-extrabold text-purple-900 sm:text-5xl sm:leading-none md:text-6xl">
                             Meet Personally on your
                             <br className="xl:hidden"/>
-                            <span className="text-orange-700"> online business</span>
+                            <span className="text-purple-500"> online business</span>
                         </p>
-                        <p className="mt-3 text-base text-orange-600     sm:mt-5 sm:text-2xl sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                        <p className="mt-3 text-base text-gray-600     sm:mt-5 sm:text-2xl sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                             Why to use Chatbot ? <br/>
                             When you can interact personally.<br/>
                             <span className="text-4xl text-orange-700 font-black ">Add Video Interaction to your Website </span>
@@ -137,13 +140,13 @@ export default class Home extends Component {
                         <div className="mt-5 sm:mt-8 sm:flex sm:justify-center flex  lg:justify-start">
                             <div className="mt-3 sm:mt-0 sm:ml-3">
                                 <a href="#"
-                                   className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-orange-700 hover:text-white hover:bg-orange-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-300 transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                                   className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-purple-700 hover:text-white hover:bg-orange-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-300 transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                                     Get Started
                                 </a>
                             </div>
                             <div className="mt-3 sm:mt-0 sm:ml-3">
                                 <a href="#"
-                                   className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-orange-700 bg-indigo-100 hover:text-white hover:bg-orange-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-300 transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                                   className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-orange-700 bg-green-300 hover:text-white hover:bg-orange-300 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-300 transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                                     Live demo
                                 </a>
                             </div>
@@ -193,6 +196,7 @@ export default class Home extends Component {
                 </div>
 
             </div>
+                </>
         );
     }
 }

@@ -12,6 +12,7 @@ type Video @model
 @key(name: "byUser", fields: ["userID"],queryField:"videoByUserId"){
   id: ID!
   token: Int!
+  parentToken:Int!
   type:String!
   userID: ID!
   maxCount:Int!
