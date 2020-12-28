@@ -4,6 +4,8 @@ import {SideCard} from "./sideCard";
 
 export const Response=({setSelected})=>{
     const [data,setData]=useState([]);
+    const [audios,setAudios]=useState([]);
+    const [texts,setTexts]=useState([]);
     const handleClick=()=>{
         console.log("handle Click");
     }
@@ -12,6 +14,8 @@ export const Response=({setSelected})=>{
             const res=await getAllResponse();
             console.log({res});
             setData(res.videos);
+            setAudios(res.audios);
+            setTexts(res.texts);
         }
         temp();
     },[])
@@ -22,6 +26,24 @@ export const Response=({setSelected})=>{
             </div>
             <div className=" m-2 mb-1 py-1 ">
                 {data.map((video,index)=>{
+                    return(
+                        <div  key={index}>
+                            <button onClick={handleClick}>
+                                <SideCard {...{video,setSelected}}/>
+                            </button>
+                        </div>
+                    )
+                })}
+                {audios.map((video,index)=>{
+                    return(
+                        <div  key={index}>
+                            <button onClick={handleClick}>
+                                <SideCard {...{video,setSelected}}/>
+                            </button>
+                        </div>
+                    )
+                })}
+                {texts.map((video,index)=>{
                     return(
                         <div  key={index}>
                             <button onClick={handleClick}>

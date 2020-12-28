@@ -3,9 +3,7 @@ import {NavbarComponent} from "../../components/navbar";
 
 export const Prices =()=>{
     return (
-        <>
-            {/*<NavbarComponent/>*/}
-            <div className="flex flex-col lg:flex-row items-start items-center lg:justify-center w-full w-full  p-32  lg:px-10 py-12 ">
+            <div className="flex flex-col mt-10 lg:flex-row items-start items-center lg:justify-center w-full w-full  p-32  lg:px-10 py-12 ">
                 <div className="bg-white w-3/5 lg:w-custom mb-10  mx-6 lg:px-4 px-6 py-10 text-center text-purple-dark rounded-lg">
                     <h5 className="font-bold text-base text-purple-700">Basic</h5>
                     <h2 className="pb-4 flex justify-center font-bold border-b border-purple-300"><span className="text-3xl mt-6 mr-1">$</span><span className="text-6xl"> 199.99</span>
@@ -46,6 +44,5 @@ export const Prices =()=>{
                     </button>
                 </div>
             </div>
-            </>
     );
 }

@@ -37,9 +37,9 @@ type Audio @model @key(name: "byVideo", fields: ["videoID", "content"]) {
 
 
 type Text @model @key(name:"byVideo",fields:["videoID","content"]){
-   id:ID!,
-   name:String!,
-   content:String!,
-   videoID: ID!
-   video: Video @connection(fields: ["videoID"])
+  id:ID!,
+  name:String!,
+  content:String!,
+  videoID: ID!
+  video: Video @connection(fields: ["videoID"])
 }

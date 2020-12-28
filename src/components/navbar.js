@@ -30,9 +30,10 @@ export const NavbarComponent = () => {
     const [toggle,setToggle]=useState(false);
     const { pathname } = window.location;
     const [open, setOpen] = useState(pathname);
+    console.log({open});
   return (
       <div>
-          <nav className='  h-32'>
+          <nav className={`${(open==="/dashboard"|| open.search("response")!==-1)?' hidden':'p-2'}`}>
               <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 '>
                   <div className='flex items-center  pt-12  justify-between h-16'>
                       <div className='flex items-center'>
@@ -56,7 +57,9 @@ export const NavbarComponent = () => {
                                               <div
                                                   className={`${open===Route.to?' border-purple-700 m-1':'m-1'}`}>
                                                   <Link
-                                                      onClick={()=>{setOpen(Route.to)}}
+                                                      onClick={()=>{
+                                                          setOpen(Route.to);
+                                                          }}
                                                       to={Route.to}
                                                       className='flex items-center'>
                                                       <div

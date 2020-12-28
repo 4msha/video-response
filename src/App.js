@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './App.css';
 import { Provider } from 'react-redux';
 import storage from 'localforage';
@@ -15,6 +15,7 @@ import { PublicRoutes } from './navigation/public';
 import { Router } from '@reach/router';
 import {ResponsePage} from "./screens/responsePage";
 import {NavbarComponent} from "./components/navbar";
+import {ResponseRoute} from "./navigation/response";
 
 const { store, persistor } = getStore(storage);
 
@@ -22,20 +23,17 @@ window.persistor = persistor;
 window.storage = getStorage(window.localStorage);
 window.css = css;
 
-const isAuth=true;
-
 
 const App = () => {
 const state=store.getState();
+// const [isAuth,setIsAuth]=useState();
 console.log({state});
 return(
     <Provider store={store}>
         <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
             <>
-                {isAuth?<><PrivateRoutes /><PublicRoutes/></>:<PublicRoutes />}
-                <Router>
-                    <ResponsePage path="/:userId/:videoId" />
-                </Router>
+                {state.auth.isAuthenticated || true ?<PrivateRoutes />:<PublicRoutes />}
+                <ResponseRoute/>
             </>
         </PersistGate>
     </Provider>

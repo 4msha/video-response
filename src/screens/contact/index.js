@@ -38,9 +38,7 @@ const temp={
 
 export const ContactUs =()=>{
     return (
-        <>
-            {/*<NavbarComponent/>*/}
-        <div className="">
+        <div className=" mt-6">
             <div className="relative  bg-white h-1/5 overflow-hidden">
                 <Footer/>
                 <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
@@ -48,6 +46,6 @@ export const ContactUs =()=>{
                 </div>
             </div>
         </div>
-            </>
+
     );
 }

@@ -96,35 +96,8 @@ export default class Home extends Component {
         let {speed, accelMod, droidX, mouseX, toTheRight} = this.state;
 
         return (
-            <>
             <div className=" min-h-screen">
                 {/*<NavbarComponent/>*/}
-                {/*<div className="logo">*/}
-                {/*    <img src="http://i68.tinypic.com/iod6yh.png" />*/}
-                {/*</div>*/}
-
-                {/*<div className="config">*/}
-                {/*    <div className='control-wrap'>*/}
-                {/*        <p>Speed: {speed}</p>*/}
-                {/*        <input*/}
-                {/*            type="range"*/}
-                {/*            min="0"*/}
-                {/*            max="11"*/}
-                {/*            step="0.1"*/}
-                {/*            value={speed}*/}
-                {/*            onChange={this.handleSpeedChange.bind(this)} />*/}
-                {/*    </div>*/}
-                {/*    <div className='control-wrap'>*/}
-                {/*        <p>Acceleration: {accelMod}</p>*/}
-                {/*        <input*/}
-                {/*            type="range"*/}
-                {/*            min="0"*/}
-                {/*            max="3"*/}
-                {/*            step="0.1"*/}
-                {/*            value={accelMod}*/}
-                {/*            onChange={this.handleAccelChange.bind(this)} />*/}
-                {/*    </div>*/}
-                {/*</div>*/}
                 <div className="pt-10 mx-auto max-h-screen-xl max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:pt-16 lg:pt-20 lg:px-8 xl:pt-28">
                     <div className="sm:text-center lg:text-left">
                         <p className="text-4xl tracking-tight leading-10 font-extrabold text-purple-900 sm:text-5xl sm:leading-none md:text-6xl">
@@ -196,7 +169,6 @@ export default class Home extends Component {
                 </div>
 
             </div>
-                </>
         );
     }
 }

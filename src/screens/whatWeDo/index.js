@@ -4,7 +4,7 @@ import {NavbarComponent} from "../../components/navbar";
 export const WhatWeDo =()=>{
     return (
         <>
-            <div className="py-12 h-screen bg-orange-200">
+            <div className="py-12  bg-orange-200">
                 {/*<NavbarComponent/>*/}
                 <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="lg:text-center">

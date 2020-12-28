@@ -27,7 +27,7 @@ export const SideCard=({video,setSelected}) =>{
       setSelected(url);
         console.log({url})
     }
-    const link=host_url+store.getState().auth.user.id+"/"+video.id;
+    const link=host_url+"response/"+store.getState().auth.user.id+"/"+video.id;
 
     return(
         <>

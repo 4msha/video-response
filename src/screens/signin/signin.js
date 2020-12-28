@@ -18,8 +18,8 @@ const SignIn=()=> {
                 payload:user,
             });
             try {
-                await navigate("/");
-                // window.location.reload();
+                await navigate("/dashboard");
+                 window.location.reload();
             } catch (err) {
                 console.log(err);
             }

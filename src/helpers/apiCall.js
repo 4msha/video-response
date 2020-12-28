@@ -13,7 +13,7 @@ export const    addUserToDb=async(user)=>{
            id:user.id,
            number:user.attributes.phone_number,
            email:user.attributes.email,
-           maxCount:20,
+           maxCount:30,
            currentCount:1,
        }
        const res=await API.graphql({ query: mutations.createUser, variables: {input: userDetails}});
