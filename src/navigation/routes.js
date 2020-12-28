@@ -37,6 +37,12 @@ export const navbarList=[
     icon: 'home',
     Component: () => <DashBoard />,
   },
+  {
+    to:'/sign-in',
+    title:'SignIn',
+    icon:'signin',
+    Component:()=> <SignInPage/>
+  }
 ];
 
 
