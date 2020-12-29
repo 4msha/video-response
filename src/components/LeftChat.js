@@ -35,7 +35,6 @@ export const LeftInfo=({setSelected,selected})=>{
       //  setSelected(video);
         console.log({selected});
     }
-
     useEffect(()=>{
         async function fun(){
             const res=await fetchAllVideo();
@@ -117,7 +116,7 @@ export const LeftInfo=({setSelected,selected})=>{
                         <span className="hidden sm:inline-block sm:align-middle sm:h-screen"
                               aria-hidden="true">&#8203;</span>
                         <div className="inline-block align-bottom   mx-auto bg-white rounded-lg  text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-                            <VideoRecord {...{setShoot}}/>
+                            <VideoRecord {...{setShoot,type:"main"}}/>
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,7 @@ import {base_url} from "./constant";
 const { store } = getStore(storage);
 
 export const handleWholeUploadVideo=async(file,content,title)=>{
+    console.log("inside handle whole video upload");
     const count=await getVideoNo();
     console.log({count});
     let currentCount=count.currentCount;
@@ -40,7 +41,7 @@ export const handleWholeUploadVideo=async(file,content,title)=>{
 
 export const handleVideoResponse =async(userId,videoId,title,content,file)=> {
 
-    console.log({videoId,userId,title,content,file},"inside handle response");
+    console.log({videoId,userId,title,content,file},"inside handle video  response");
     const count =await  getVideoResponseNo(videoId);
     let currentCount = count.currentCount;
     const maxCount = count.maxCount;

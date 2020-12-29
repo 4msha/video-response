@@ -19,7 +19,7 @@ const SignIn=()=> {
             });
             try {
                 await navigate("/dashboard");
-                 window.location.reload();
+               //  window.location.reload();
             } catch (err) {
                 console.log(err);
             }

@@ -33,7 +33,10 @@ export const addVideoToDb=async(input)=>{
 }
 
 export const getVideoNo=async()=>{
+    console.log("inside get video");
     const id=store.getState().auth.user.id;
+    console.log(store.getState().auth.user);
+    console.log({id});
     const res=await API.graphql({ query: queries.getUser, variables: { id: id }});
     const {data}=res||{data:{}};
     const {getUser}=data||{getUser:{}};
@@ -59,21 +62,25 @@ export const updateCurrentCount=async(currentCount,id)=>{
 export const fetchAllVideo=async()=>{
     const id=store.getState().auth.user.id;
     console.log({id});
-    const res=await API.graphql({ query: queries.getUser, variables: { id:id }});
+    const res=await API.graphql({ query: queries.videoByUserId, variables: { userID:id }});
     console.log({res});
-    const response=res.data.getUser.videos.items;
-    let data=[];
-    response.map((re)=>{
-        if(re.type==="main"){
-            data.push(re);
-        }
+    const {data}=res||{data:{}};
+    const {videoByUserId}=data||{videoByUserId:{}};
+    const {items}=videoByUserId||{items:{}};
+    console.log({data,items});
+    const data1=[];
+    Array.prototype.forEach.call(items, child => {
+        console.log({child});
+        if(child.type==="main"){
+                    data1.push(child);
+                }
     });
-    console.log({data});
-    return (data);
+    console.log({data1});
+    return (data1);
 }
 
 export const getVideoResponseNo=async(videoId)=>{
-    console.log({videoId});
+    console.log({videoId}," yeah we r here ");
     const res=await API.graphql({ query: queries.getVideo, variables: { id: videoId }});
     const {data}=res||{data:{}};
     const {getVideo}=data||{getVideo:{}};
@@ -116,36 +123,55 @@ export const uploadTextToDb=async(input)=>{
 export const getAllResponse=async()=>{
     const userId=store.getState().auth.user.id;
     const res=await API.graphql({ query: queries.getUser, variables: { id: userId }});
-    const items=res.data.getUser.videos.items;
+    const items=res.data.getUser.videos.items ||[];
     let response=[];
     let videos=[];
-    let audios=[];
+    let audios=items.audios||[];
+    console.log({audios});
     let texts=[];
-    items.map((item)=>{
+    console.log({items});
+    items.forEach((item)=>{
         if(item.type==="response"){
             response.push(item);
         }else{
             videos.push(item);
         }
     });
-    console.log({response,videos});
-    videos.map(async(video)=>{
-        const data=await  API.graphql({ query: queries.getVideo, variables: { id: video.id }});
-        const temp1=data.data.getVideo.audios.items;
-        const temp2=data.data.getVideo.texts.items;
-        console.log({temp1,temp2});
-        temp2.map((t)=>{
-            texts.push(t);
-        })
-        temp1.map((t)=>{
-            audios.push(t);
-        })
-    });
-    console.log({response,audios,texts});
-    const result={
-        videos:response,
-        audios:audios,
-        texts:texts
-    }
-    return (result);
+    console.log("heyeeeeeee");
+    console.log(videos.audios);
+    return (response);
+//     console.log({response,videos});
+//     videos.forEach(async(video)=>{
+//         const data= await  API.graphql({ query: queries.getVideo, variables: { id: video.id }});
+//         const temp1=data.data.getVideo.audios.items;
+//         const temp2=data.data.getVideo.texts.items;
+//         console.log({temp1,temp2});
+//         temp2.forEach((t)=>{
+//             texts.push(t);
+//         })
+//         temp1.forEach((t)=>{
+//             audios.push(t);
+//         })
+//     });
+// //.then((res)=>console.log(res)).catch((err)=>console.error(err));
+//     console.log({response,audios,texts});
+//     const result={
+//         videos:response,
+//         audios:audios,
+//         texts:texts
+//     }
+//     console.log({result});
+//     return (result);
+}
+
+export const getAllAudios=async()=>{
+    const res=await  API.graphql({ query: queries.listAudios,});
+    console.log({res});
+    return (res.data.listAudios.items);
+}
+
+export const getAllText=async()=>{
+    const res=await  API.graphql({ query: queries.listTexts,});
+    console.log({res});
+    return (res.data.listTexts.items);
 }

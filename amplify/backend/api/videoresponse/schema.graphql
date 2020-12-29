@@ -24,8 +24,6 @@ type Video @model
   name:String!
 }
 
-
-
 type Audio @model @key(name: "byVideo", fields: ["videoID", "content"]) {
   id: ID!
   token: Int!
@@ -43,3 +41,4 @@ type Text @model @key(name:"byVideo",fields:["videoID","content"]){
   videoID: ID!
   video: Video @connection(fields: ["videoID"])
 }
+

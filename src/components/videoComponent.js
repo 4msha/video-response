@@ -6,11 +6,12 @@ import {TextInput} from "./textInput";
 import Visualizer from 'react-audio-visuals'
 
 
-export const AudioPlayer=()=>{
+export const AudioPlayer=(src)=>{
     const audioRef = useRef(null)
+    console.log(src);
   return(
       <div>
-          <audio src={"src"} ref={audioRef} controls />
+          <audio src={src.src} ref={audioRef}  />
           <Visualizer audioRef={audioRef} />
       </div>
   )
@@ -86,11 +87,11 @@ export const VideoRecord=({setShoot,type,videoId,userId})=>{
       if(type==="main"){
           const res=handleWholeUploadVideo(file,content,title);
       }else{
+          console.log("inside else video component ");
           const res=handleVideoResponse(userId,videoId,title,content,file);
       }
-
       setShoot(false);
-      console.log({file});
+      console.log({file},"inside video compoent");
   }
 
   const handlePause=()=>{

@@ -1,11 +1,11 @@
 import React,{useState,useEffect} from "react";
-import {getAllResponse} from "../helpers/apiCall";
+import {getAllAudios, getAllResponse, getAllText} from "../helpers/apiCall";
 import {SideCard} from "./sideCard";
 
 export const Response=({setSelected})=>{
     const [data,setData]=useState([]);
-    const [audios,setAudios]=useState([]);
-    const [texts,setTexts]=useState([]);
+    // const [audios,setAudios]=useState([]);
+    // const [texts,setTexts]=useState([]);
     const handleClick=()=>{
         console.log("handle Click");
     }
@@ -13,11 +13,27 @@ export const Response=({setSelected})=>{
         async function temp(){
             const res=await getAllResponse();
             console.log({res});
-            setData(res.videos);
-            setAudios(res.audios);
-            setTexts(res.texts);
+            res.forEach((temp)=>{
+                setData(arr => [...arr, temp]);
+            });
+            const aud= await getAllAudios();
+            console.log({aud});
+
+            aud.forEach((temp)=>{
+                setData(arr => [...arr, temp]);
+            });
+            const tex=await getAllText();
+            console.log({tex});
+            tex.forEach((temp)=>{
+                setData(arr => [...arr, temp]);
+            });
+            // res.texts.map((temp)=>{
+            //     setData(arr => [...arr, temp]);
+            // });
+            // console.log({audios,data,texts});
+
         }
-        temp();
+        temp().then((res)=>console.log(res)).catch((err)=>console.error(err));
     },[])
     return(
         <div>
@@ -34,24 +50,24 @@ export const Response=({setSelected})=>{
                         </div>
                     )
                 })}
-                {audios.map((video,index)=>{
-                    return(
-                        <div  key={index}>
-                            <button onClick={handleClick}>
-                                <SideCard {...{video,setSelected}}/>
-                            </button>
-                        </div>
-                    )
-                })}
-                {texts.map((video,index)=>{
-                    return(
-                        <div  key={index}>
-                            <button onClick={handleClick}>
-                                <SideCard {...{video,setSelected}}/>
-                            </button>
-                        </div>
-                    )
-                })}
+                {/*{audios.map((video,index)=>{*/}
+                {/*    return(*/}
+                {/*        <div  key={index}>*/}
+                {/*            <button onClick={handleClick}>*/}
+                {/*                <SideCard {...{video,setSelected}}/>*/}
+                {/*            </button>*/}
+                {/*        </div>*/}
+                {/*    )*/}
+                {/*})}*/}
+                {/*{texts.map((video,index)=>{*/}
+                {/*    return(*/}
+                {/*        <div  key={index}>*/}
+                {/*            <button onClick={handleClick}>*/}
+                {/*                <SideCard {...{video,setSelected}}/>*/}
+                {/*            </button>*/}
+                {/*        </div>*/}
+                {/*    )*/}
+                {/*})}*/}
             </div>
         </div>
     )
