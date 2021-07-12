@@ -13,8 +13,6 @@ import { css } from './styles';
 import { PrivateRoutes } from './navigation/private';
 import { PublicRoutes } from './navigation/public';
 import { Router } from '@reach/router';
-import {ResponsePage} from "./screens/responsePage";
-import {NavbarComponent} from "./components/navbar";
 import {ResponseRoute} from "./navigation/response";
 
 const { store, persistor } = getStore(storage);
@@ -27,6 +25,7 @@ window.css = css;
 const App = () => {
 const state=store.getState();
 // const [isAuth,setIsAuth]=useState();
+
 console.log({state});
 return(
     <Provider store={store}>

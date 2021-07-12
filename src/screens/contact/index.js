@@ -42,7 +42,7 @@ export const ContactUs =()=>{
             <div className="relative  bg-white h-1/5 overflow-hidden">
                 <Footer/>
                 <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-                    <img className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://images.unsplash.com/photo-1585325701172-fcb7d019242d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjZ8fGNoaWNrZW4lMjBtZWF0fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt=""/>
+                    <img className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8dmlkZW98ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt=""/>
                 </div>
             </div>
         </div>
